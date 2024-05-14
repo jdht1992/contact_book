@@ -22,3 +22,6 @@ staticfiles/
 *.ini
 
 http/http-client.env.json
+
+# Ignore the default SQLite database.
+*.sqlite3
