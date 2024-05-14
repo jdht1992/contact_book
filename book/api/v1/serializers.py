@@ -6,14 +6,14 @@ from book.models import Person, Phone
 
 
 class PersonModelSerializer(ModelSerializer):
-    phone_set = SerializerMethodField()
+    persons = SerializerMethodField()
 
     class Meta:
         model = Person
-        fields = ['first_name', 'last_name', 'birth_date', 'phone_set']
+        fields = ['first_name', 'last_name', 'birth_date', 'persons']
 
-    def get_phone_set(self, obj):
-        return [wgm.phone_number for wgm in obj.phone_set.all()]
+    def get_persons(self, obj):
+        return [wgm.phone_number for wgm in obj.persons.all()]
 
 
 class PhoneModelSerializer(ModelSerializer):
