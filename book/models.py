@@ -1,6 +1,6 @@
 # Create your models here.
-from django.db import models
 from django.core.validators import RegexValidator
+from django.db import models
 
 
 class TimestampedModel(models.Model):

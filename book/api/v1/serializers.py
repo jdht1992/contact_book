@@ -1,10 +1,12 @@
-from rest_framework import serializers
+from rest_framework.fields import SerializerMethodField
+from rest_framework.relations import PrimaryKeyRelatedField
+from rest_framework.serializers import ModelSerializer
+
 from book.models import Person, Phone
 
 
-class PersonModelSerializer(serializers.ModelSerializer):
-    phone_set = serializers.SerializerMethodField()
-
+class PersonModelSerializer(ModelSerializer):
+    phone_set = SerializerMethodField()
 
     class Meta:
         model = Person
@@ -14,10 +16,8 @@ class PersonModelSerializer(serializers.ModelSerializer):
         return [wgm.phone_number for wgm in obj.phone_set.all()]
 
 
-
-class PhoneModelSerializer(serializers.ModelSerializer):
-    person = serializers.PrimaryKeyRelatedField(queryset=Person.objects.all())
-
+class PhoneModelSerializer(ModelSerializer):
+    person = PrimaryKeyRelatedField(queryset=Person.objects.all())
 
     class Meta:
         model = Phone
